@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">TaskFlow</string>
+
+    <!-- Header y Dashboard (P-01 / P-02) -->
+    <string name="dashboard_title">Mi Dashboard</string>
+    <string name="dashboard_subtitle_count">Tienes %1$d tareas por hacer</string>
+    <string name="search_placeholder">Buscar tareas…</string>
+    <string name="cd_sort_tasks">Ordenar tareas por prioridad</string>
+    <string name="fab_new_task">Nueva tarea</string>
+
+    <!-- Filtros -->
+    <string name="filter_all_areas">Todas</string>
+    <string name="label_importance">Importancia</string>
+    <string name="importance_high">Alta</string>
+    <string name="importance_medium">Media</string>
+    <string name="importance_low">Baja</string>
+
+    <!-- Secciones -->
+    <string name="section_overdue">Tareas atrasadas</string>
+    <string name="section_pending">Tareas pendientes</string>
+    <string name="section_completed">Completadas recientemente</string>
+
+    <!-- Tarjeta de tarea -->
+    <string name="task_priority_format">Prioridad %1$d</string>
+
+    <!-- Estado vacío (P-03) -->
+    <string name="empty_state_title">¡Todo listo! No tienes tareas pendientes.</string>
+    <string name="empty_state_hint">Toca «Nueva tarea» para crear una.</string>
+
+    <!-- Barra de navegación inferior -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_productivity">Productividad</string>
+    <string name="nav_settings">Ajustes</string>
+
+    <!-- Ajustes (P-08) -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_subtitle">Personaliza TaskFlow</string>
+    <string name="settings_section_appearance">APARIENCIA</string>
+    <string name="settings_theme_label">Tema de la aplicación</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="theme_system">Sistema</string>
+    <string name="settings_section_data">DATOS</string>
+    <string name="settings_restore_seed">Restaurar datos de ejemplo</string>
+    <string name="settings_saved_tasks">Tareas guardadas</string>
+    <string name="settings_section_about">ACERCA DE</string>
+    <string name="settings_version">TaskFlow Mobile — Versión 1.0.0</string>
+    <string name="settings_offline_info">Sin conexión — Datos guardados localmente</string>
+</resources>
