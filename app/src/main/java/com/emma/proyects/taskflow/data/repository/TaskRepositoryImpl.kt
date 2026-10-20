@@ -8,27 +8,17 @@ class TaskRepositoryImpl(
     private val localDataSource: TaskLocalDataSource
 ) : TaskRepository {
 
-    override fun getTasks(): List<Task> {
-        return localDataSource.getTasks()
-    }
+    override fun getTasks(): List<Task> = localDataSource.getTasks()
 
-    override fun toggleTaskCompletion(taskId: String): List<Task> {
-        return localDataSource.toggleTaskCompletion(taskId)
-    }
+    override fun toggleTask(taskId: String): List<Task> = localDataSource.toggleTask(taskId)
 
-    override fun deleteTask(taskId: String): List<Task> {
-        return localDataSource.deleteTask(taskId)
-    }
+    override fun upsertTask(task: Task): List<Task> = localDataSource.upsertTask(task)
 
-    override fun restoreSeedTasks(): List<Task> {
-        return localDataSource.restoreSeedTasks()
-    }
+    override fun deleteTask(taskId: String): List<Task> = localDataSource.deleteTask(taskId)
 
-    override fun getThemeMode(): ThemeMode {
-        return localDataSource.getThemeMode()
-    }
+    override fun restoreSeedTasks(): List<Task> = localDataSource.restoreSeedTasks()
 
-    override fun setThemeMode(mode: ThemeMode): ThemeMode {
-        return localDataSource.setThemeMode(mode)
-    }
+    override fun getThemeMode(): ThemeMode = localDataSource.getThemeMode()
+
+    override fun setThemeMode(mode: ThemeMode): ThemeMode = localDataSource.setThemeMode(mode)
 }

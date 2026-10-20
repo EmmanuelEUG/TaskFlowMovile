@@ -1,9 +1,9 @@
 package com.emma.proyects.taskflow.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
+import com.emma.proyects.taskflow.data.model.AppRoute
+import com.emma.proyects.taskflow.data.model.Importance
 import com.emma.proyects.taskflow.data.model.Task
-import com.emma.proyects.taskflow.data.model.TaskFilter
-import com.emma.proyects.taskflow.data.model.TaskPriority
 import com.emma.proyects.taskflow.data.model.ThemeMode
 import com.emma.proyects.taskflow.data.repository.TaskRepository
 import com.emma.proyects.taskflow.presentation.screens.TaskUiState
@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlin.math.roundToInt
 
 class TaskViewModel(
     private val repository: TaskRepository
@@ -21,87 +20,83 @@ class TaskViewModel(
     val uiState: StateFlow<TaskUiState> = _uiState.asStateFlow()
 
     init {
-        loadInitialData()
+        loadData()
     }
 
-    private fun loadInitialData() {
+    private fun loadData() {
         val tasks = repository.getTasks()
         val theme = repository.getThemeMode()
-        updateDashboardState(tasks = tasks, filter = TaskFilter.ALL, themeMode = theme)
+        updateState(tasks = tasks, themeMode = theme)
     }
 
-    fun onToggleTaskCompletion(taskId: String) {
-        val updatedTasks = repository.toggleTaskCompletion(taskId)
-        updateDashboardState(
-            tasks = updatedTasks,
-            filter = _uiState.value.selectedFilter
-        )
+    fun onToggleTask(taskId: String) {
+        val updatedTasks = repository.toggleTask(taskId)
+        updateState(tasks = updatedTasks)
     }
 
-    fun onFilterSelected(filter: TaskFilter) {
-        updateDashboardState(
-            tasks = _uiState.value.allTasks,
-            filter = filter
-        )
+    fun onSearchQueryChanged(query: String) {
+        _uiState.update { it.copy(searchQuery = query) }
+        updateState(tasks = _uiState.value.allTasks)
     }
 
-    fun onDeleteTask(taskId: String) {
-        val updatedTasks = repository.deleteTask(taskId)
-        updateDashboardState(
-            tasks = updatedTasks,
-            filter = _uiState.value.selectedFilter
-        )
+    fun onAreaSelected(area: String) {
+        _uiState.update { it.copy(selectedArea = area) }
+        updateState(tasks = _uiState.value.allTasks)
     }
 
-    fun onRestoreSeedTasks() {
-        val restoredTasks = repository.restoreSeedTasks()
-        updateDashboardState(
-            tasks = restoredTasks,
-            filter = TaskFilter.ALL
-        )
+    fun onImportanceSelected(importance: Importance?) {
+        val newImportance = if (_uiState.value.selectedImportance == importance) null else importance
+        _uiState.update { it.copy(selectedImportance = newImportance) }
+        updateState(tasks = _uiState.value.allTasks)
     }
 
-    fun onCycleThemeMode() {
-        val nextMode = when (_uiState.value.themeMode) {
-            ThemeMode.SYSTEM -> ThemeMode.LIGHT
-            ThemeMode.LIGHT -> ThemeMode.DARK
-            ThemeMode.DARK -> ThemeMode.SYSTEM
+    fun onNavigate(route: AppRoute) {
+        _uiState.update { it.copy(currentRoute = route) }
+    }
+
+    fun onRestoreSeed() {
+        val restored = repository.restoreSeedTasks()
+        updateState(tasks = restored)
+    }
+
+    fun onCycleTheme() {
+        val next = when (_uiState.value.themeMode) {
+            ThemeMode.DARK -> ThemeMode.LIGHT
+            ThemeMode.LIGHT -> ThemeMode.SYSTEM
+            ThemeMode.SYSTEM -> ThemeMode.DARK
         }
-        val savedMode = repository.setThemeMode(nextMode)
-        _uiState.update { currentState ->
-            currentState.copy(themeMode = savedMode)
-        }
+        val saved = repository.setThemeMode(next)
+        _uiState.update { it.copy(themeMode = saved) }
     }
 
-    private fun updateDashboardState(
+    private fun updateState(
         tasks: List<Task>,
-        filter: TaskFilter,
         themeMode: ThemeMode = _uiState.value.themeMode
     ) {
-        val filtered = when (filter) {
-            TaskFilter.ALL -> tasks
-            TaskFilter.PENDING -> tasks.filter { !it.isCompleted }
-            TaskFilter.HIGH -> tasks.filter { it.priority == TaskPriority.HIGH }
-            TaskFilter.MEDIUM -> tasks.filter { it.priority == TaskPriority.MEDIUM }
-            TaskFilter.LOW -> tasks.filter { it.priority == TaskPriority.LOW }
+        val query = _uiState.value.searchQuery.trim().lowercase()
+        val area = _uiState.value.selectedArea
+        val importance = _uiState.value.selectedImportance
+
+        val filtered = tasks.filter { task ->
+            val matchesQuery = query.isEmpty() ||
+                    task.title.lowercase().contains(query) ||
+                    task.description.lowercase().contains(query)
+            val matchesArea = area == "Todas" || task.area.equals(area, ignoreCase = true)
+            val matchesImportance = importance == null || task.importance == importance
+
+            matchesQuery && matchesArea && matchesImportance
         }
 
-        val total = tasks.size
-        val completed = tasks.count { it.isCompleted }
-        val pending = total - completed
-        val progressFloat = if (total > 0) completed.toFloat() / total.toFloat() else 0f
-        val progressPercent = (progressFloat * 100).roundToInt()
+        val overdue = filtered.filter { it.isOverdue && !it.isCompleted }
+        val pending = filtered.filter { !it.isOverdue && !it.isCompleted }
+        val completed = filtered.filter { it.isCompleted }.take(6)
 
-        _uiState.update { currentState ->
-            currentState.copy(
+        _uiState.update {
+            it.copy(
                 allTasks = tasks,
-                visibleTasks = filtered,
-                selectedFilter = filter,
-                totalCount = total,
-                pendingCount = pending,
-                completedCount = completed,
-                completionProgress = progressFloat,
-                completionPercentInt = progressPercent,
+                overdueTasks = overdue,
+                pendingTasks = pending,
+                completedTasks = completed,
                 themeMode = themeMode
             )
         }

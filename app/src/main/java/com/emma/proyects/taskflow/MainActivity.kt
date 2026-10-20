@@ -17,19 +17,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val taskViewModel: TaskViewModel = viewModel(
+            val viewModel: TaskViewModel = viewModel(
                 factory = TaskModule.provideTaskViewModelFactory()
             )
-            val uiState by taskViewModel.uiState.collectAsStateWithLifecycle()
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
             TaskFlowTheme(themeMode = uiState.themeMode) {
                 TaskPage(
                     uiState = uiState,
-                    onToggleTask = taskViewModel::onToggleTaskCompletion,
-                    onDeleteTask = taskViewModel::onDeleteTask,
-                    onFilterSelected = taskViewModel::onFilterSelected,
-                    onRestoreSeed = taskViewModel::onRestoreSeedTasks,
-                    onCycleTheme = taskViewModel::onCycleThemeMode
+                    onToggleTask = viewModel::onToggleTask,
+                    onSearchChange = viewModel::onSearchQueryChanged,
+                    onAreaSelected = viewModel::onAreaSelected,
+                    onImportanceSelected = viewModel::onImportanceSelected,
+                    onNavigate = viewModel::onNavigate,
+                    onCycleTheme = viewModel::onCycleTheme
                 )
             }
         }

@@ -1,16 +1,21 @@
 <resources>
     <string name="app_name">TaskFlow</string>
 
-    <!-- Header y Dashboard (P-01 / P-02) -->
+    <!-- Dashboard (P-01, P-02, P-03) -->
     <string name="dashboard_title">Mi Dashboard</string>
-    <string name="dashboard_subtitle_count">Tienes %1$d tareas por hacer</string>
-    <string name="search_placeholder">Buscar tareas…</string>
-    <string name="cd_sort_tasks">Ordenar tareas por prioridad</string>
+    <string name="dashboard_subtitle">Tienes %1$d tareas por hacer</string>
+    <string name="search_placeholder">Buscar tareas...</string>
+    <string name="cd_sort_tasks">Ordenar tareas</string>
     <string name="fab_new_task">Nueva tarea</string>
 
-    <!-- Filtros -->
-    <string name="filter_all_areas">Todas</string>
-    <string name="label_importance">Importancia</string>
+    <!-- Áreas e Importancia -->
+    <string name="area_all">Todas</string>
+    <string name="area_school">Escuela</string>
+    <string name="area_home">Casa</string>
+    <string name="area_health">Salud</string>
+    <string name="area_project">Proyecto</string>
+
+    <string name="importance_label">Importancia</string>
     <string name="importance_high">Alta</string>
     <string name="importance_medium">Media</string>
     <string name="importance_low">Baja</string>
@@ -19,31 +24,95 @@
     <string name="section_overdue">Tareas atrasadas</string>
     <string name="section_pending">Tareas pendientes</string>
     <string name="section_completed">Completadas recientemente</string>
-
-    <!-- Tarjeta de tarea -->
     <string name="task_priority_format">Prioridad %1$d</string>
 
     <!-- Estado vacío (P-03) -->
     <string name="empty_state_title">¡Todo listo! No tienes tareas pendientes.</string>
     <string name="empty_state_hint">Toca «Nueva tarea» para crear una.</string>
 
-    <!-- Barra de navegación inferior -->
+    <!-- Formulario Crear / Editar (P-04, P-05) -->
+    <string name="form_new_title">Nueva tarea</string>
+    <string name="form_edit_title">Editar tarea</string>
+    <string name="form_label_title">Título *</string>
+    <string name="form_placeholder_title">Ej. Entregar reporte final</string>
+    <string name="form_error_title_empty">El título es obligatorio</string>
+    <string name="form_label_description">Descripción</string>
+    <string name="form_placeholder_description">Añade detalles o notas de la tarea...</string>
+    <string name="form_priority_value">%1$d de 5</string>
+    <string name="form_label_priority">Prioridad</string>
+    <string name="form_label_area">Área</string>
+    <string name="form_existing_areas">Áreas sugeridas</string>
+    <string name="form_label_due_date">Fecha y hora límite</string>
+    <string name="form_pick_date">Elegir fecha</string>
+    <string name="form_pick_time">Elegir hora</string>
+    <string name="form_recurring_question">¿Tarea recurrente?</string>
+    <string name="form_recurring_every">Cada</string>
+    <string name="form_recurring_unit">Unidad</string>
+    <string name="btn_create_task">Crear tarea</string>
+    <string name="btn_save_changes">Guardar cambios</string>
+
+    <!-- Unidades de Recurrencia -->
+    <string name="unit_hours">Horas</string>
+    <string name="unit_days">Días</string>
+    <string name="unit_weeks">Semanas</string>
+    <string name="unit_months">Meses</string>
+    <string name="unit_years">Años</string>
+
+    <!-- Detalle de Tarea (P-06) -->
+    <string name="detail_title">Detalle de tarea</string>
+    <string name="detail_no_description">Sin descripción adicional.</string>
+    <string name="detail_label_due_date">Fecha límite</string>
+    <string name="detail_no_due_date">Sin fecha límite</string>
+    <string name="detail_label_status">Estado</string>
+    <string name="detail_status_completed">Completada</string>
+    <string name="detail_status_overdue">Atrasada</string>
+    <string name="detail_status_pending">Pendiente</string>
+    <string name="detail_label_recurrence">Recurrencia</string>
+    <string name="detail_no_recurrence">No se repite</string>
+    <string name="detail_recurrence_format">Cada %1$d %2$s</string>
+    <string name="detail_label_created">Creada</string>
+    <string name="btn_mark_completed">Marcar como completada</string>
+    <string name="btn_mark_pending">Marcar como pendiente</string>
+    <string name="btn_delete_task">Eliminar tarea</string>
+
+    <!-- Diálogo Eliminar (P-09) -->
+    <string name="dialog_delete_title">¿Eliminar tarea?</string>
+    <string name="dialog_delete_message">Se eliminará «%1$s» de forma permanente. Esta acción no se puede deshacer.</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_delete">Eliminar</string>
+
+    <!-- Navegación, Productividad (P-07) y Ajustes (P-08) -->
     <string name="nav_home">Inicio</string>
     <string name="nav_productivity">Productividad</string>
     <string name="nav_settings">Ajustes</string>
 
-    <!-- Ajustes (P-08) -->
+    <string name="prod_title">Productividad</string>
+    <string name="prod_subtitle">Analiza tu desempeño y mejora tus hábitos</string>
+    <string name="prod_total_tasks">Tareas totales</string>
+    <string name="prod_completed">Completadas</string>
+    <string name="prod_overdue">Atrasadas</string>
+    <string name="prod_punctuality">Puntualidad</string>
+    <string name="prod_chart_weekly">Tareas completadas (7 días)</string>
+    <string name="prod_chart_punctuality">Puntualidad de entrega</string>
+    <string name="prod_on_time">A tiempo</string>
+    <string name="prod_late">Atrasadas</string>
+    <string name="prod_chart_areas">Distribución por áreas</string>
+
     <string name="settings_title">Ajustes</string>
     <string name="settings_subtitle">Personaliza TaskFlow</string>
-    <string name="settings_section_appearance">APARIENCIA</string>
+    <string name="settings_appearance_header">APARIENCIA</string>
     <string name="settings_theme_label">Tema de la aplicación</string>
     <string name="theme_light">Claro</string>
     <string name="theme_dark">Oscuro</string>
     <string name="theme_system">Sistema</string>
-    <string name="settings_section_data">DATOS</string>
+    <string name="settings_data_header">DATOS</string>
     <string name="settings_restore_seed">Restaurar datos de ejemplo</string>
+    <string name="settings_restore_subtitle">Recargar las 9 tareas iniciales</string>
     <string name="settings_saved_tasks">Tareas guardadas</string>
-    <string name="settings_section_about">ACERCA DE</string>
-    <string name="settings_version">TaskFlow Mobile — Versión 1.0.0</string>
-    <string name="settings_offline_info">Sin conexión — Datos guardados localmente</string>
+    <string name="settings_saved_count">%1$d tareas en almacenamiento JSON</string>
+    <string name="settings_about_header">ACERCA DE</string>
+    <string name="settings_version_title">TaskFlow Mobile — Versión 1.0.0</string>
+    <string name="settings_version_subtitle">Arquitectura MVVM + UDF en Jetpack Compose</string>
+    <string name="settings_offline_title">Sin conexión — Persistencia JSON local</string>
+    <string name="settings_offline_subtitle">Datos almacenados localmente en el dispositivo</string>
 </resources>
