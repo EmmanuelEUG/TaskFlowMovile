@@ -1,6 +1,7 @@
 package com.emma.proyects.taskflow.data.datasource
 
 import android.content.Context
+import androidx.core.content.edit
 import com.emma.proyects.taskflow.data.model.Importance
 import com.emma.proyects.taskflow.data.model.RecurrenceUnit
 import com.emma.proyects.taskflow.data.model.Task
@@ -173,7 +174,7 @@ class TaskLocalDataSource(context: Context) {
                         )
                     )
                 }
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 tasks.addAll(getSeedTasks())
                 saveToJsonStorage()
             }
@@ -200,7 +201,9 @@ class TaskLocalDataSource(context: Context) {
             }
             jsonArray.put(obj)
         }
-        prefs.edit().putString(KEY_TASKS_JSON, jsonArray.toString()).apply()
+        prefs.edit {
+            putString(KEY_TASKS_JSON, jsonArray.toString())
+        }
     }
 
     fun getTasks(): List<Task> = tasks.toList()
@@ -243,13 +246,15 @@ class TaskLocalDataSource(context: Context) {
         val saved = prefs.getString(KEY_THEME_MODE, ThemeMode.DARK.name) ?: ThemeMode.DARK.name
         return try {
             ThemeMode.valueOf(saved)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             ThemeMode.DARK
         }
     }
 
     fun setThemeMode(mode: ThemeMode): ThemeMode {
-        prefs.edit().putString(KEY_THEME_MODE, mode.name).apply()
+        prefs.edit {
+            putString(KEY_THEME_MODE, mode.name)
+        }
         return mode
     }
 

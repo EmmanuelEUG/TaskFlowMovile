@@ -9,19 +9,22 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ListAlt
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.CheckBox
+import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.ErrorOutline
+import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.SwapVert
-import androidx.compose.material.icons.automirrored.outlined.ListAlt
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +42,8 @@ import androidx.compose.ui.unit.dp
 import com.emma.proyects.taskflow.R
 import com.emma.proyects.taskflow.data.model.AppRoute
 import com.emma.proyects.taskflow.data.model.Importance
+import com.emma.proyects.taskflow.data.model.Task
+import com.emma.proyects.taskflow.data.model.ThemeMode
 import com.emma.proyects.taskflow.presentation.components.AppBottomBar
 import com.emma.proyects.taskflow.presentation.components.AppFilterChip
 import com.emma.proyects.taskflow.presentation.components.EmptyState
@@ -51,10 +56,13 @@ import com.emma.proyects.taskflow.ui.theme.TaskFlowDesign
 fun TaskPage(
     uiState: TaskUiState,
     onToggleTask: (String) -> Unit,
+    onTaskClick: (Task) -> Unit,
+    onNewTaskClick: () -> Unit,
     onSearchChange: (String) -> Unit,
     onAreaSelected: (String) -> Unit,
     onImportanceSelected: (Importance?) -> Unit,
     onNavigate: (AppRoute) -> Unit,
+    onToggleSortOrder: () -> Unit,
     onCycleTheme: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -83,15 +91,51 @@ fun TaskPage(
                 actions = {
                     IconButton(onClick = onCycleTheme) {
                         Icon(
+                            imageVector = if (uiState.themeMode == ThemeMode.LIGHT) {
+                                Icons.Outlined.DarkMode
+                            } else {
+                                Icons.Outlined.LightMode
+                            },
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                    IconButton(onClick = onToggleSortOrder) {
+                        Icon(
                             imageVector = Icons.Outlined.SwapVert,
                             contentDescription = stringResource(R.string.cd_sort_tasks),
-                            tint = MaterialTheme.colorScheme.onSurface
+                            tint = if (uiState.sortDescendingByPriority) {
+                                MaterialTheme.colorScheme.onSurface
+                            } else {
+                                MaterialTheme.colorScheme.primary
+                            }
                         )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
                 )
+            )
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = onNewTaskClick,
+                shape = RoundedCornerShape(18.dp),
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                icon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Add,
+                        contentDescription = null,
+                        modifier = Modifier.size(22.dp)
+                    )
+                },
+                text = {
+                    Text(
+                        text = stringResource(R.string.fab_new_task),
+                        style = MaterialTheme.typography.titleSmall
+                    )
+                }
             )
         },
         bottomBar = {
@@ -105,7 +149,7 @@ fun TaskPage(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
                 top = innerPadding.calculateTopPadding() + 8.dp,
-                bottom = innerPadding.calculateBottomPadding() + 24.dp,
+                bottom = innerPadding.calculateBottomPadding() + 88.dp,
                 start = 20.dp,
                 end = 20.dp
             ),
@@ -119,7 +163,10 @@ fun TaskPage(
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
-                        text = stringResource(R.string.dashboard_subtitle, uiState.pendingTaskCount()),
+                        text = stringResource(
+                            R.string.dashboard_subtitle,
+                            uiState.pendingTasks.size + uiState.overdueTasks.size
+                        ),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -192,11 +239,11 @@ fun TaskPage(
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     val importances = listOf(
-                        Triple(Importance.HIGH, R.string.importance_high, false),
-                        Triple(Importance.MEDIUM, R.string.importance_medium, false),
-                        Triple(Importance.LOW, R.string.importance_low, false)
+                        Importance.HIGH to R.string.importance_high,
+                        Importance.MEDIUM to R.string.importance_medium,
+                        Importance.LOW to R.string.importance_low
                     )
-                    importances.forEach { (imp, resId, _) ->
+                    importances.forEach { (imp, resId) ->
                         AppFilterChip(
                             label = stringResource(resId),
                             selected = uiState.selectedImportance == imp,
@@ -220,7 +267,8 @@ fun TaskPage(
                     TaskCard(
                         task = task,
                         onToggle = { onToggleTask(task.id) },
-                        onClick = {}
+                        onClick = { onTaskClick(task) },
+                        modifier = Modifier.animateItem()
                     )
                 }
             }
@@ -246,7 +294,8 @@ fun TaskPage(
                     TaskCard(
                         task = task,
                         onToggle = { onToggleTask(task.id) },
-                        onClick = {}
+                        onClick = { onTaskClick(task) },
+                        modifier = Modifier.animateItem()
                     )
                 }
             }
@@ -265,12 +314,11 @@ fun TaskPage(
                     TaskCard(
                         task = task,
                         onToggle = { onToggleTask(task.id) },
-                        onClick = {}
+                        onClick = { onTaskClick(task) },
+                        modifier = Modifier.animateItem()
                     )
                 }
             }
         }
     }
 }
-
-private fun TaskUiState.pendingTaskCount(): Int = pendingTasks.size + overdueTasks.size

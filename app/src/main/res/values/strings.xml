@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">TaskFlow</string>
 
-    <!-- Dashboard (P-01, P-02, P-03) -->
+    
     <string name="dashboard_title">Mi Dashboard</string>
     <string name="dashboard_subtitle">Tienes %1$d tareas por hacer</string>
     <string name="search_placeholder">Buscar tareas...</string>
     <string name="cd_sort_tasks">Ordenar tareas</string>
     <string name="fab_new_task">Nueva tarea</string>
 
-    <!-- Áreas e Importancia -->
+    
     <string name="area_all">Todas</string>
     <string name="area_school">Escuela</string>
     <string name="area_home">Casa</string>
@@ -20,17 +20,17 @@
     <string name="importance_medium">Media</string>
     <string name="importance_low">Baja</string>
 
-    <!-- Secciones -->
+    
     <string name="section_overdue">Tareas atrasadas</string>
     <string name="section_pending">Tareas pendientes</string>
     <string name="section_completed">Completadas recientemente</string>
     <string name="task_priority_format">Prioridad %1$d</string>
 
-    <!-- Estado vacío (P-03) -->
+    
     <string name="empty_state_title">¡Todo listo! No tienes tareas pendientes.</string>
     <string name="empty_state_hint">Toca «Nueva tarea» para crear una.</string>
 
-    <!-- Formulario Crear / Editar (P-04, P-05) -->
+    
     <string name="form_new_title">Nueva tarea</string>
     <string name="form_edit_title">Editar tarea</string>
     <string name="form_label_title">Título *</string>
@@ -51,14 +51,14 @@
     <string name="btn_create_task">Crear tarea</string>
     <string name="btn_save_changes">Guardar cambios</string>
 
-    <!-- Unidades de Recurrencia -->
+    
     <string name="unit_hours">Horas</string>
     <string name="unit_days">Días</string>
     <string name="unit_weeks">Semanas</string>
     <string name="unit_months">Meses</string>
     <string name="unit_years">Años</string>
 
-    <!-- Detalle de Tarea (P-06) -->
+    
     <string name="detail_title">Detalle de tarea</string>
     <string name="detail_no_description">Sin descripción adicional.</string>
     <string name="detail_label_due_date">Fecha límite</string>
@@ -75,13 +75,13 @@
     <string name="btn_mark_pending">Marcar como pendiente</string>
     <string name="btn_delete_task">Eliminar tarea</string>
 
-    <!-- Diálogo Eliminar (P-09) -->
+    
     <string name="dialog_delete_title">¿Eliminar tarea?</string>
     <string name="dialog_delete_message">Se eliminará «%1$s» de forma permanente. Esta acción no se puede deshacer.</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_delete">Eliminar</string>
 
-    <!-- Navegación, Productividad (P-07) y Ajustes (P-08) -->
+    
     <string name="nav_home">Inicio</string>
     <string name="nav_productivity">Productividad</string>
     <string name="nav_settings">Ajustes</string>

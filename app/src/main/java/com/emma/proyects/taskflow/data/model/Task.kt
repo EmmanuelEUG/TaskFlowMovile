@@ -22,7 +22,7 @@ data class Task(
     val description: String,
     val area: String,
     val importance: Importance,
-    val priorityLevel: Int, // 1..5
+    val priorityLevel: Int, 
     val dueDateFormatted: String?,
     val isOverdue: Boolean = false,
     val isCompleted: Boolean = false,

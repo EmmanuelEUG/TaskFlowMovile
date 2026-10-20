@@ -164,7 +164,7 @@ fun TaskFormScreen(
                 .padding(horizontal = 20.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            // 1. Campo Título con validación (P-04)
+            
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
                     text = stringResource(R.string.form_label_title),
@@ -199,7 +199,7 @@ fun TaskFormScreen(
                 )
             }
 
-            // 2. Campo Descripción
+            
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
                     text = stringResource(R.string.form_label_description),
@@ -216,7 +216,7 @@ fun TaskFormScreen(
                 )
             }
 
-            // 3. Importancia (3 chips iguales)
+            
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text(
                     text = stringResource(R.string.importance_label),
@@ -243,7 +243,7 @@ fun TaskFormScreen(
                 }
             }
 
-            // 4. Slider de Prioridad (1 a 5)
+            
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -268,7 +268,7 @@ fun TaskFormScreen(
                 )
             }
 
-            // 5. Área + Chips de áreas sugeridas
+            
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text(
                     text = stringResource(R.string.form_label_area),
@@ -298,7 +298,7 @@ fun TaskFormScreen(
                 }
             }
 
-            // 6. Fecha y Hora
+            
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Text(
                     text = stringResource(R.string.form_label_due_date),
@@ -351,7 +351,7 @@ fun TaskFormScreen(
                 }
             }
 
-            // 7. Sección de Recurrencia (P-05)
+            
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
@@ -470,7 +470,7 @@ fun TaskFormScreen(
                 TextButton(
                     onClick = {
                         datePickerState.selectedDateMillis?.let { millis ->
-                            val sdf = SimpleDateFormat("d 'de' MMMM", Locale("es", "MX")).apply {
+                            val sdf = SimpleDateFormat("d 'de' MMMM", Locale.forLanguageTag("es-MX")).apply {
                                 timeZone = TimeZone.getTimeZone("UTC")
                             }
                             onDateSelected(sdf.format(Date(millis)))
