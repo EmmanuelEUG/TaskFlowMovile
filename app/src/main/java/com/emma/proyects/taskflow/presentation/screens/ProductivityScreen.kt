@@ -46,6 +46,8 @@ import com.emma.proyects.taskflow.R
 import com.emma.proyects.taskflow.data.model.AppRoute
 import com.emma.proyects.taskflow.presentation.components.AppBottomBar
 import com.emma.proyects.taskflow.ui.theme.TaskFlowDesign
+import java.time.DayOfWeek
+import java.time.LocalDate
 
 @Composable
 fun ProductivityScreen(
@@ -134,13 +136,16 @@ fun ProductivityScreen(
 
             item {
                 ChartCard(title = stringResource(R.string.prod_chart_weekly)) {
-                    WeeklyBarChart()
+                    WeeklyBarChart(uiState = uiState)
                 }
             }
 
             item {
                 ChartCard(title = stringResource(R.string.prod_chart_punctuality)) {
-                    PunctualityDonutChart(punctualityRate = uiState.punctualityRate)
+                    PunctualityDonutChart(
+                        punctualityRate = uiState.punctualityRate,
+                        completedCount = uiState.completedTasksCount
+                    )
                 }
             }
 
@@ -227,9 +232,27 @@ fun ChartCard(
 }
 
 @Composable
-private fun WeeklyBarChart() {
+private fun WeeklyBarChart(uiState: TaskUiState) {
     val barColor = Color(0xFF3B82F6)
-    val bars = listOf(2, 4, 3, 5, 4, 6, 3)
+
+    // Calculamos el índice del día actual (0 = Lunes, 6 = Domingo)
+    val today = LocalDate.now()
+    val todayIndex = when (today.dayOfWeek) {
+        DayOfWeek.MONDAY -> 0
+        DayOfWeek.TUESDAY -> 1
+        DayOfWeek.WEDNESDAY -> 2
+        DayOfWeek.THURSDAY -> 3
+        DayOfWeek.FRIDAY -> 4
+        DayOfWeek.SATURDAY -> 5
+        DayOfWeek.SUNDAY -> 6
+    }
+
+    // Si hay tareas completadas hoy, se asigna su conteo real al día actual
+    val bars = MutableList(7) { 0 }
+    if (uiState.completedTasksCount > 0) {
+        bars[todayIndex] = uiState.completedTasksCount
+    }
+
     val days = listOf("L", "M", "Mi", "J", "V", "S", "D")
 
     Column(
@@ -241,21 +264,24 @@ private fun WeeklyBarChart() {
                 .fillMaxWidth()
                 .height(90.dp)
         ) {
-            val maxVal = 7f
+            // Escala dinámica: al menos 5 para que 1 tarea no ocupe toda la altura de la tarjeta
+            val maxVal = maxOf(bars.maxOrNull()?.toFloat() ?: 1f, 5f)
             val slotWidth = size.width / bars.size
             val barWidth = 24.dp.toPx()
 
             bars.forEachIndexed { index, value ->
-                val barHeight = (value / maxVal) * size.height
-                val left = index * slotWidth + (slotWidth - barWidth) / 2f
-                val top = size.height - barHeight
+                if (value > 0) {
+                    val barHeight = (value / maxVal) * size.height
+                    val left = index * slotWidth + (slotWidth - barWidth) / 2f
+                    val top = size.height - barHeight
 
-                drawRoundRect(
-                    color = barColor,
-                    topLeft = Offset(left, top),
-                    size = Size(barWidth, barHeight),
-                    cornerRadius = CornerRadius(6.dp.toPx(), 6.dp.toPx())
-                )
+                    drawRoundRect(
+                        color = barColor,
+                        topLeft = Offset(left, top),
+                        size = Size(barWidth, barHeight),
+                        cornerRadius = CornerRadius(6.dp.toPx(), 6.dp.toPx())
+                    )
+                }
             }
         }
         Row(
@@ -274,10 +300,13 @@ private fun WeeklyBarChart() {
 }
 
 @Composable
-private fun PunctualityDonutChart(punctualityRate: Int) {
+private fun PunctualityDonutChart(punctualityRate: Int, completedCount: Int) {
     val greenColor = Color(0xFF10B981)
     val redColor = Color(0xFFEF4444)
-    val lateRate = (100 - punctualityRate).coerceAtLeast(0)
+    val neutralTrackColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.35f)
+
+    val hasData = completedCount > 0
+    val lateRate = if (hasData) (100 - punctualityRate).coerceIn(0, 100) else 0
 
     Row(
         modifier = Modifier
@@ -296,24 +325,39 @@ private fun PunctualityDonutChart(punctualityRate: Int) {
                     .padding(6.dp)
             ) {
                 val stroke = 16.dp.toPx()
-                val onTimeSweep = (punctualityRate / 100f) * 360f
-                drawArc(
-                    color = redColor,
-                    startAngle = 0f,
-                    sweepAngle = 360f,
-                    useCenter = false,
-                    style = Stroke(width = stroke, cap = StrokeCap.Butt)
-                )
-                drawArc(
-                    color = greenColor,
-                    startAngle = -90f,
-                    sweepAngle = onTimeSweep,
-                    useCenter = false,
-                    style = Stroke(width = stroke, cap = StrokeCap.Round)
-                )
+
+                if (!hasData) {
+                    drawArc(
+                        color = neutralTrackColor,
+                        startAngle = 0f,
+                        sweepAngle = 360f,
+                        useCenter = false,
+                        style = Stroke(width = stroke, cap = StrokeCap.Round)
+                    )
+                } else {
+                    val onTimeSweep = (punctualityRate / 100f) * 360f
+
+                    drawArc(
+                        color = redColor,
+                        startAngle = 0f,
+                        sweepAngle = 360f,
+                        useCenter = false,
+                        style = Stroke(width = stroke, cap = StrokeCap.Butt)
+                    )
+
+                    if (punctualityRate > 0) {
+                        drawArc(
+                            color = greenColor,
+                            startAngle = -90f,
+                            sweepAngle = onTimeSweep,
+                            useCenter = false,
+                            style = Stroke(width = stroke, cap = StrokeCap.Round)
+                        )
+                    }
+                }
             }
             Text(
-                text = "$punctualityRate%",
+                text = if (hasData) "$punctualityRate%" else "0%",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -328,12 +372,12 @@ private fun PunctualityDonutChart(punctualityRate: Int) {
             ChartLegendRow(
                 color = greenColor,
                 label = stringResource(R.string.prod_on_time),
-                valueText = "$punctualityRate%"
+                valueText = if (hasData) "$punctualityRate%" else "0%"
             )
             ChartLegendRow(
                 color = redColor,
                 label = stringResource(R.string.prod_late),
-                valueText = "$lateRate%"
+                valueText = if (hasData) "$lateRate%" else "0%"
             )
         }
     }
