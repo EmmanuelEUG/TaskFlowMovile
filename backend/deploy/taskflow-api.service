@@ -1,0 +1,15 @@
+[Unit]
+Description=TaskFlow FastAPI Service
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/TaskFlow/backend
+EnvironmentFile=/home/ubuntu/TaskFlow/backend/.env
+ExecStart=/home/ubuntu/TaskFlow/backend/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 1
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

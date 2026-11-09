@@ -1,65 +1,202 @@
 <resources>
     <string name="app_name">TaskFlow</string>
+    <string name="app_tagline">Organiza tus tareas con claridad y enfoque</string>
 
-    
+    <!-- Autenticación: Login y Registro -->
+    <string name="login_welcome_title">Bienvenido de nuevo</string>
+    <string name="login_welcome_subtitle">Inicia sesión para sincronizar tus tareas en la nube</string>
+    <string name="register_title">Crear cuenta</string>
+    <string name="register_subtitle">Regístrate para guardar y gestionar tus tareas desde cualquier dispositivo</string>
+    <string name="auth_label_name">Nombre completo *</string>
+    <string name="auth_placeholder_name">Ej. Emmanuel Urbina</string>
+    <string name="auth_label_email">Correo electrónico *</string>
+    <string name="auth_placeholder_email">correo@ejemplo.com</string>
+    <string name="auth_label_password">Contraseña *</string>
+    <string name="auth_placeholder_password">Mínimo 8 caracteres</string>
+    <string name="auth_label_confirm_password">Confirmar contraseña *</string>
+    <string name="auth_placeholder_confirm_password">Repite tu contraseña</string>
+    <string name="auth_btn_login">Iniciar sesión</string>
+    <string name="auth_btn_register">Crear cuenta</string>
+    <string name="auth_go_to_register_prefix">¿No tienes cuenta?</string>
+    <string name="auth_go_to_register_cta">Regístrate</string>
+    <string name="auth_go_to_login_prefix">¿Ya tienes cuenta?</string>
+    <string name="auth_go_to_login_cta">Inicia sesión</string>
+    <string name="auth_logout">Cerrar sesión</string>
+    <string name="auth_logout_subtitle">Finalizar la sesión actual y volver al inicio de sesión</string>
+    <string name="auth_session_expired">Tu sesión expiró. Inicia sesión nuevamente.</string>
+    <string name="auth_logout_success">Sesión cerrada correctamente</string>
+
+    <!-- Validaciones y errores Auth -->
+    <string name="validation_name_required">El nombre es obligatorio</string>
+    <plurals name="validation_name_min_length">
+        <item quantity="one">Ingresa al menos %1$d carácter</item>
+        <item quantity="other">Ingresa al menos %1$d caracteres</item>
+    </plurals>
+    <string name="validation_email_required">El correo es obligatorio</string>
+    <string name="validation_email_invalid">Ingresa un correo electrónico válido</string>
+    <string name="validation_password_required">La contraseña es obligatoria</string>
+    <plurals name="validation_password_min_length">
+        <item quantity="one">La contraseña debe tener al menos %1$d carácter</item>
+        <item quantity="other">La contraseña debe tener al menos %1$d caracteres</item>
+    </plurals>
+    <plurals name="validation_password_short">
+        <item quantity="one">Mínimo %1$d carácter</item>
+        <item quantity="other">Mínimo %1$d caracteres</item>
+    </plurals>
+    <string name="validation_confirm_password_required">Confirma tu contraseña</string>
+    <string name="validation_passwords_mismatch">Las contraseñas no coinciden</string>
+    <string name="error_login_failed">No pudimos iniciar sesión</string>
+    <string name="error_register_failed">No pudimos crear la cuenta</string>
+
+    <!-- Errores de red y HTTP -->
+    <string name="error_timeout">El servidor tardó demasiado en responder. Intenta nuevamente.</string>
+    <string name="error_connection">Error de conexión: verifica tu red o que el servidor esté encendido.</string>
+    <string name="error_serialization">No pudimos interpretar la respuesta del servidor.</string>
+    <string name="error_http_bad_request">Solicitud inválida. Revisa los datos ingresados.</string>
+    <string name="error_http_unauthorized">Sesión no válida o credenciales incorrectas.</string>
+    <string name="error_http_not_found">No se encontró el recurso solicitado.</string>
+    <string name="error_http_conflict">El registro ya existe en el sistema.</string>
+    <string name="error_http_validation">Algunos campos no cumplen el formato esperado.</string>
+    <string name="error_http_server">Error interno del servidor (%1$d).</string>
+    <string name="error_http_generic">Error HTTP %1$d: %2$s</string>
+
+    <!-- Dashboard / Home -->
     <string name="dashboard_title">Mi Dashboard</string>
-    <string name="dashboard_subtitle">Tienes %1$d tareas por hacer</string>
-    <string name="search_placeholder">Buscar tareas...</string>
+    <string name="dashboard_greeting">Hola, %1$s</string>
+    <plurals name="dashboard_subtitle">
+        <item quantity="one">Tienes %1$d tarea por hacer</item>
+        <item quantity="other">Tienes %1$d tareas por hacer</item>
+    </plurals>
+    <string name="search_placeholder">Buscar tareas…</string>
     <string name="cd_sort_tasks">Ordenar tareas</string>
+    <string name="cd_refresh_tasks">Actualizar lista</string>
+    <string name="cd_toggle_theme">Cambiar tema</string>
+    <string name="cd_back">Volver</string>
+    <string name="cd_close">Cerrar</string>
+    <string name="cd_toggle_password">Mostrar u ocultar contraseña</string>
+    <string name="cd_toggle_task_completion">Cambiar estado de la tarea</string>
+    <string name="cd_recurrence_unit">Unidad de recurrencia</string>
     <string name="fab_new_task">Nueva tarea</string>
 
-    
+    <!-- Estados de lista y retroalimentación -->
+    <string name="loading_tasks">Sincronizando tus tareas…</string>
+    <string name="loading_detail">Cargando detalle de tarea…</string>
+    <string name="loading_form">Cargando datos de la tarea…</string>
+    <string name="error_title">No pudimos conectar con el servidor</string>
+    <string name="error_load_tasks">Error al cargar tareas</string>
+    <string name="error_update_task">No se pudo actualizar la tarea</string>
+    <string name="error_delete_task">No se pudo eliminar la tarea</string>
+    <string name="error_load_seed">Error al cargar tareas de ejemplo</string>
+    <string name="error_reload_after_mutation">Operación aplicada, error al recargar</string>
+    <string name="error_load_task_detail">No pudimos cargar la tarea</string>
+    <string name="error_update_status">No se pudo actualizar el estado</string>
+    <string name="error_save_task">No pudimos guardar la tarea</string>
+    <string name="btn_retry">Reintentar</string>
+    <string name="empty_state_title">¡Todo listo! No tienes tareas registradas.</string>
+    <string name="empty_state_hint">Toca «Nueva tarea» para crear una o carga ejemplos iniciales.</string>
+    <string name="empty_filtered_title">Sin resultados con los filtros actuales</string>
+    <string name="empty_filtered_hint">Prueba limpiando la búsqueda o cambiando los filtros.</string>
+    <string name="btn_load_seed">Cargar 9 tareas de ejemplo</string>
+    <string name="btn_clear_filters">Limpiar filtros</string>
+
+    <string name="msg_task_created">Tarea creada correctamente</string>
+    <string name="msg_task_updated">Cambios guardados correctamente</string>
+    <string name="msg_task_deleted_named">Tarea «%1$s» eliminada</string>
+    <string name="msg_task_completed">Tarea marcada como completada</string>
+    <string name="msg_task_completed_named">Tarea «%1$s» completada</string>
+    <string name="msg_task_reopened">Tarea movida a pendientes</string>
+    <string name="msg_seed_loaded">Se cargaron las 9 tareas de ejemplo</string>
+
+    <!-- Validaciones de formulario -->
+    <string name="validation_title_required">El título es obligatorio</string>
+    <plurals name="validation_title_min_length">
+        <item quantity="one">Ingresa al menos %1$d carácter</item>
+        <item quantity="other">Ingresa al menos %1$d caracteres</item>
+    </plurals>
+    <string name="validation_area_required">El área es obligatoria</string>
+    <string name="validation_recurrence_interval_min">Ingresa un intervalo válido (mínimo %1$d)</string>
+
+    <!-- Filtros y áreas -->
     <string name="area_all">Todas</string>
     <string name="area_school">Escuela</string>
     <string name="area_home">Casa</string>
     <string name="area_health">Salud</string>
     <string name="area_project">Proyecto</string>
+    <string name="area_general">General</string>
 
     <string name="importance_label">Importancia</string>
     <string name="importance_high">Alta</string>
     <string name="importance_medium">Media</string>
     <string name="importance_low">Baja</string>
 
-    
+    <string name="due_filter_label">Entrega</string>
+    <string name="due_filter_all">Todas</string>
+    <string name="due_filter_today">Hoy</string>
+    <string name="due_filter_this_week">Esta semana</string>
+    <string name="due_filter_next_week">Próxima semana</string>
+    <string name="due_filter_later">Más tarde</string>
+    <string name="due_filter_no_date">Sin fecha</string>
+
+    <string name="recurrence_filter_label">Tipo</string>
+    <string name="recurrence_all">Todas</string>
+    <string name="recurrence_only">Recurrentes</string>
+    <string name="recurrence_none">Únicas</string>
+
+    <!-- Secciones Home -->
     <string name="section_overdue">Tareas atrasadas</string>
     <string name="section_pending">Tareas pendientes</string>
     <string name="section_completed">Completadas recientemente</string>
     <string name="task_priority_format">Prioridad %1$d</string>
+    <string name="task_created_today">Hoy</string>
 
-    
-    <string name="empty_state_title">¡Todo listo! No tienes tareas pendientes.</string>
-    <string name="empty_state_hint">Toca «Nueva tarea» para crear una.</string>
-
-    
+    <!-- Formulario Crear / Editar -->
     <string name="form_new_title">Nueva tarea</string>
     <string name="form_edit_title">Editar tarea</string>
     <string name="form_label_title">Título *</string>
     <string name="form_placeholder_title">Ej. Entregar reporte final</string>
-    <string name="form_error_title_empty">El título es obligatorio</string>
     <string name="form_label_description">Descripción</string>
-    <string name="form_placeholder_description">Añade detalles o notas de la tarea...</string>
-    <string name="form_priority_value">%1$d de 5</string>
-    <string name="form_label_priority">Prioridad</string>
-    <string name="form_label_area">Área</string>
-    <string name="form_existing_areas">Áreas sugeridas</string>
+    <string name="form_placeholder_description">Añade detalles o notas de la tarea…</string>
+    <string name="form_priority_value">%1$d de %2$d</string>
+    <string name="form_label_priority">Prioridad *</string>
+    <string name="form_label_area">Área *</string>
+    <string name="form_placeholder_area">Ej. Escuela, Casa, Proyecto</string>
     <string name="form_label_due_date">Fecha y hora límite</string>
     <string name="form_pick_date">Elegir fecha</string>
     <string name="form_pick_time">Elegir hora</string>
+    <string name="form_clear_datetime">Limpiar fecha y hora</string>
     <string name="form_recurring_question">¿Tarea recurrente?</string>
     <string name="form_recurring_every">Cada</string>
-    <string name="form_recurring_unit">Unidad</string>
+    <string name="form_repeat_days_label">Repetir los días:</string>
+    <string name="form_repeat_month_days_label">Repetir los días del mes:</string>
     <string name="btn_create_task">Crear tarea</string>
     <string name="btn_save_changes">Guardar cambios</string>
 
-    
     <string name="unit_hours">Horas</string>
     <string name="unit_days">Días</string>
     <string name="unit_weeks">Semanas</string>
     <string name="unit_months">Meses</string>
     <string name="unit_years">Años</string>
 
-    
+    <!-- Días de la semana -->
+    <string name="day_short_mon">Lun</string>
+    <string name="day_short_tue">Mar</string>
+    <string name="day_short_wed">Mié</string>
+    <string name="day_short_thu">Jue</string>
+    <string name="day_short_fri">Vie</string>
+    <string name="day_short_sat">Sáb</string>
+    <string name="day_short_sun">Dom</string>
+
+    <string name="day_letter_mon">L</string>
+    <string name="day_letter_tue">M</string>
+    <string name="day_letter_wed">Mi</string>
+    <string name="day_letter_thu">J</string>
+    <string name="day_letter_fri">V</string>
+    <string name="day_letter_sat">S</string>
+    <string name="day_letter_sun">D</string>
+
+    <!-- Detalle de tarea -->
     <string name="detail_title">Detalle de tarea</string>
+    <string name="detail_not_found">No se encontró la tarea</string>
     <string name="detail_no_description">Sin descripción adicional.</string>
     <string name="detail_label_due_date">Fecha límite</string>
     <string name="detail_no_due_date">Sin fecha límite</string>
@@ -70,49 +207,62 @@
     <string name="detail_label_recurrence">Recurrencia</string>
     <string name="detail_no_recurrence">No se repite</string>
     <string name="detail_recurrence_format">Cada %1$d %2$s</string>
+    <string name="detail_recurrence_days_format">%1$s (%2$s)</string>
+    <string name="detail_recurrence_month_days_format">%1$s (Días: %2$s)</string>
     <string name="detail_label_created">Creada</string>
+    <string name="detail_label_id">Identificador</string>
     <string name="btn_mark_completed">Marcar como completada</string>
     <string name="btn_mark_pending">Marcar como pendiente</string>
+    <string name="btn_edit_task">Editar</string>
     <string name="btn_delete_task">Eliminar tarea</string>
 
-    
+    <!-- Diálogo Eliminar -->
     <string name="dialog_delete_title">¿Eliminar tarea?</string>
-    <string name="dialog_delete_message">Se eliminará «%1$s» de forma permanente. Esta acción no se puede deshacer.</string>
+    <string name="dialog_delete_message">Se eliminará «%1$s» de forma permanente en el servidor. Esta acción no se puede deshacer.</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_delete">Eliminar</string>
 
-    
+    <!-- Navegación inferior -->
     <string name="nav_home">Inicio</string>
     <string name="nav_productivity">Productividad</string>
     <string name="nav_settings">Ajustes</string>
 
+    <!-- Productividad -->
     <string name="prod_title">Productividad</string>
     <string name="prod_subtitle">Analiza tu desempeño y mejora tus hábitos</string>
     <string name="prod_total_tasks">Tareas totales</string>
     <string name="prod_completed">Completadas</string>
     <string name="prod_overdue">Atrasadas</string>
     <string name="prod_punctuality">Puntualidad</string>
+    <string name="prod_percent_format">%1$d%%</string>
     <string name="prod_chart_weekly">Tareas completadas (7 días)</string>
     <string name="prod_chart_punctuality">Puntualidad de entrega</string>
     <string name="prod_on_time">A tiempo</string>
     <string name="prod_late">Atrasadas</string>
     <string name="prod_chart_areas">Distribución por áreas</string>
+    <string name="prod_no_areas">Crea tareas para ver tu distribución por áreas.</string>
 
+    <!-- Ajustes -->
     <string name="settings_title">Ajustes</string>
-    <string name="settings_subtitle">Personaliza TaskFlow</string>
+    <string name="settings_subtitle">Cuenta, tema y conexión con el servidor</string>
+    <string name="settings_account_header">CUENTA</string>
+    <string name="default_user_name">Usuario</string>
+    <string name="default_avatar_initial">T</string>
     <string name="settings_appearance_header">APARIENCIA</string>
     <string name="settings_theme_label">Tema de la aplicación</string>
     <string name="theme_light">Claro</string>
     <string name="theme_dark">Oscuro</string>
     <string name="theme_system">Sistema</string>
-    <string name="settings_data_header">DATOS</string>
-    <string name="settings_restore_seed">Restaurar datos de ejemplo</string>
-    <string name="settings_restore_subtitle">Recargar las 9 tareas iniciales</string>
-    <string name="settings_saved_tasks">Tareas guardadas</string>
-    <string name="settings_saved_count">%1$d tareas en almacenamiento JSON</string>
+    <string name="settings_data_header">DATOS Y SERVIDOR</string>
+    <string name="settings_restore_seed">Cargar tareas de ejemplo</string>
+    <string name="settings_restore_subtitle">Reemplaza o inicializa las 9 tareas demo en tu cuenta</string>
+    <string name="settings_saved_tasks">Tareas sincronizadas</string>
+    <plurals name="settings_saved_count">
+        <item quantity="one">%1$d tarea registrada en la API</item>
+        <item quantity="other">%1$d tareas registradas en la API</item>
+    </plurals>
     <string name="settings_about_header">ACERCA DE</string>
-    <string name="settings_version_title">TaskFlow Mobile — Versión 1.0.0</string>
-    <string name="settings_version_subtitle">Arquitectura MVVM + UDF en Jetpack Compose</string>
-    <string name="settings_offline_title">Sin conexión — Persistencia JSON local</string>
-    <string name="settings_offline_subtitle">Datos almacenados localmente en el dispositivo</string>
+    <string name="settings_version_title">TaskFlow Mobile — Versión 2.0.0</string>
+    <string name="settings_version_subtitle">Arquitectura MVVM + Clean + Repository + Retrofit 3</string>
+    <string name="settings_api_title">API REST conectada</string>
 </resources>

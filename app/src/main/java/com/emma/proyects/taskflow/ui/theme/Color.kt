@@ -1,49 +1,76 @@
 package com.emma.proyects.taskflow.ui.theme
 
-import androidx.compose.ui.graphics.Color
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.colorResource
+import com.emma.proyects.taskflow.R
 
+@Composable
+fun taskFlowLightColorScheme(): ColorScheme = lightColorScheme(
+    background = colorResource(R.color.tf_bg_light),
+    surface = colorResource(R.color.tf_surface_light),
+    surfaceVariant = colorResource(R.color.tf_surface_alt_light),
+    onBackground = colorResource(R.color.tf_text_light),
+    onSurface = colorResource(R.color.tf_text_light),
+    onSurfaceVariant = colorResource(R.color.tf_text_muted_light),
+    primary = colorResource(R.color.tf_primary_light),
+    onPrimary = colorResource(R.color.tf_on_primary_light),
+    primaryContainer = colorResource(R.color.tf_primary_container_light),
+    onPrimaryContainer = colorResource(R.color.tf_on_primary_container_light),
+    outline = colorResource(R.color.tf_outline_light),
+    error = colorResource(R.color.tf_error_light),
+    onError = colorResource(R.color.tf_on_error_light),
+    errorContainer = colorResource(R.color.tf_error_container_light)
+)
 
-val BgLight = Color(0xFFF8FAFC)
-val SurfaceLight = Color(0xFFFFFFFF)
-val SurfaceAltLight = Color(0xFFF1F5F9)
-val TextLight = Color(0xFF0F172A)
-val TextMutedLight = Color(0xFF64748B)
-val PrimaryLight = Color(0xFF2563EB)
-val OnPrimaryLight = Color(0xFFFFFFFF)
-val PrimaryContainerLight = Color(0xFFDBEAFE)
-val OnPrimaryContainerLight = Color(0xFF1D4ED8)
-val OutlineLight = Color(0xFFE2E8F0)
-val ErrorLight = Color(0xFFDC2626)
-val OnErrorLight = Color(0xFFFFFFFF)
-val ErrorContainerLight = Color(0xFFFEF2F2)
-val SuccessLight = Color(0xFF16A34A)
+@Composable
+fun taskFlowDarkColorScheme(): ColorScheme = darkColorScheme(
+    background = colorResource(R.color.tf_bg_dark),
+    surface = colorResource(R.color.tf_surface_dark),
+    surfaceVariant = colorResource(R.color.tf_surface_alt_dark),
+    onBackground = colorResource(R.color.tf_text_dark),
+    onSurface = colorResource(R.color.tf_text_dark),
+    onSurfaceVariant = colorResource(R.color.tf_text_muted_dark),
+    primary = colorResource(R.color.tf_primary_dark),
+    onPrimary = colorResource(R.color.tf_on_primary_dark),
+    primaryContainer = colorResource(R.color.tf_primary_container_dark),
+    onPrimaryContainer = colorResource(R.color.tf_on_primary_container_dark),
+    outline = colorResource(R.color.tf_outline_dark),
+    error = colorResource(R.color.tf_error_dark),
+    onError = colorResource(R.color.tf_on_error_dark),
+    errorContainer = colorResource(R.color.tf_error_container_dark)
+)
 
-val AltaBgLight = Color(0xFFFEE2E2)
-val AltaFgLight = Color(0xFFB91C1C)
-val MediaBgLight = Color(0xFFFEF3C7)
-val MediaFgLight = Color(0xFFB45309)
-val BajaBgLight = Color(0xFFDBEAFE)
-val BajaFgLight = Color(0xFF1D4ED8)
+@Composable
+fun taskFlowLightExtraColors(): ExtraColors = ExtraColors(
+    success = colorResource(R.color.tf_success_light),
+    altaBg = colorResource(R.color.tf_alta_bg_light),
+    altaFg = colorResource(R.color.tf_alta_fg_light),
+    mediaBg = colorResource(R.color.tf_media_bg_light),
+    mediaFg = colorResource(R.color.tf_media_fg_light),
+    bajaBg = colorResource(R.color.tf_baja_bg_light),
+    bajaFg = colorResource(R.color.tf_baja_fg_light),
+    chartBlue = colorResource(R.color.tf_chart_blue),
+    chartGreen = colorResource(R.color.tf_chart_green),
+    chartRed = colorResource(R.color.tf_chart_red),
+    chartAmber = colorResource(R.color.tf_chart_amber),
+    chartPurple = colorResource(R.color.tf_chart_purple)
+)
 
-
-val BgDark = Color(0xFF0F172A)
-val SurfaceDark = Color(0xFF1E293B)
-val SurfaceAltDark = Color(0xFF334155)
-val TextDark = Color(0xFFF1F5F9)
-val TextMutedDark = Color(0xFF94A3B8)
-val PrimaryDark = Color(0xFF60A5FA)
-val OnPrimaryDark = Color(0xFF0B1220)
-val PrimaryContainerDark = Color(0xFF1E3A8A)
-val OnPrimaryContainerDark = Color(0xFFBFDBFE)
-val OutlineDark = Color(0xFF334155)
-val ErrorDark = Color(0xFFF87171)
-val OnErrorDark = Color(0xFF0B1220)
-val ErrorContainerDark = Color(0xFF3B1B1F)
-val SuccessDark = Color(0xFF4ADE80)
-
-val AltaBgDark = Color(0xFF5B2024)
-val AltaFgDark = Color(0xFFFCA5A5)
-val MediaBgDark = Color(0xFF4A3410)
-val MediaFgDark = Color(0xFFFCD34D)
-val BajaBgDark = Color(0xFF1E3A5F)
-val BajaFgDark = Color(0xFF93C5FD)
+@Composable
+fun taskFlowDarkExtraColors(): ExtraColors = ExtraColors(
+    success = colorResource(R.color.tf_success_dark),
+    altaBg = colorResource(R.color.tf_alta_bg_dark),
+    altaFg = colorResource(R.color.tf_alta_fg_dark),
+    mediaBg = colorResource(R.color.tf_media_bg_dark),
+    mediaFg = colorResource(R.color.tf_media_fg_dark),
+    bajaBg = colorResource(R.color.tf_baja_bg_dark),
+    bajaFg = colorResource(R.color.tf_baja_fg_dark),
+    chartBlue = colorResource(R.color.tf_chart_blue),
+    chartGreen = colorResource(R.color.tf_chart_green),
+    chartRed = colorResource(R.color.tf_chart_red),
+    chartAmber = colorResource(R.color.tf_chart_amber),
+    chartPurple = colorResource(R.color.tf_chart_purple)
+)

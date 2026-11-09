@@ -13,3 +13,12 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# FastAPI Backend
+backend/.venv/
+backend/**/__pycache__/
+backend/*.db
+backend/**/*.db
+backend/data/
+backend/.env
+backend/.pytest_cache/

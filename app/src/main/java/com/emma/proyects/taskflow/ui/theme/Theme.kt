@@ -2,14 +2,12 @@ package com.emma.proyects.taskflow.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.emma.proyects.taskflow.data.model.ThemeMode
+import com.emma.proyects.taskflow.tasks.domain.model.ThemeMode
 
 @Immutable
 data class ExtraColors(
@@ -19,74 +17,20 @@ data class ExtraColors(
     val mediaBg: Color,
     val mediaFg: Color,
     val bajaBg: Color,
-    val bajaFg: Color
-)
-
-val LocalExtraColors = staticCompositionLocalOf {
-    ExtraColors(
-        success = SuccessLight,
-        altaBg = AltaBgLight,
-        altaFg = AltaFgLight,
-        mediaBg = MediaBgLight,
-        mediaFg = MediaFgLight,
-        bajaBg = BajaBgLight,
-        bajaFg = BajaFgLight
-    )
+    val bajaFg: Color,
+    val chartBlue: Color,
+    val chartGreen: Color,
+    val chartRed: Color,
+    val chartAmber: Color,
+    val chartPurple: Color
+) {
+    val chartPalette: List<Color>
+        get() = listOf(chartBlue, chartGreen, chartRed, chartAmber, chartPurple)
 }
 
-private val LightColorScheme = lightColorScheme(
-    background = BgLight,
-    surface = SurfaceLight,
-    surfaceVariant = SurfaceAltLight,
-    onBackground = TextLight,
-    onSurface = TextLight,
-    onSurfaceVariant = TextMutedLight,
-    primary = PrimaryLight,
-    onPrimary = OnPrimaryLight,
-    primaryContainer = PrimaryContainerLight,
-    onPrimaryContainer = OnPrimaryContainerLight,
-    outline = OutlineLight,
-    error = ErrorLight,
-    onError = OnErrorLight,
-    errorContainer = ErrorContainerLight
-)
-
-private val DarkColorScheme = darkColorScheme(
-    background = BgDark,
-    surface = SurfaceDark,
-    surfaceVariant = SurfaceAltDark,
-    onBackground = TextDark,
-    onSurface = TextDark,
-    onSurfaceVariant = TextMutedDark,
-    primary = PrimaryDark,
-    onPrimary = OnPrimaryDark,
-    primaryContainer = PrimaryContainerDark,
-    onPrimaryContainer = OnPrimaryContainerDark,
-    outline = OutlineDark,
-    error = ErrorDark,
-    onError = OnErrorDark,
-    errorContainer = ErrorContainerDark
-)
-
-private val LightExtraColors = ExtraColors(
-    success = SuccessLight,
-    altaBg = AltaBgLight,
-    altaFg = AltaFgLight,
-    mediaBg = MediaBgLight,
-    mediaFg = MediaFgLight,
-    bajaBg = BajaBgLight,
-    bajaFg = BajaFgLight
-)
-
-private val DarkExtraColors = ExtraColors(
-    success = SuccessDark,
-    altaBg = AltaBgDark,
-    altaFg = AltaFgDark,
-    mediaBg = MediaBgDark,
-    mediaFg = MediaFgDark,
-    bajaBg = BajaBgDark,
-    bajaFg = BajaFgDark
-)
+val LocalExtraColors = staticCompositionLocalOf<ExtraColors> {
+    error("TaskFlowTheme must provide LocalExtraColors")
+}
 
 @Composable
 fun TaskFlowTheme(
@@ -99,13 +43,13 @@ fun TaskFlowTheme(
         ThemeMode.LIGHT -> false
     }
 
-    val colorScheme = if (isDark) DarkColorScheme else LightColorScheme
-    val extraColors = if (isDark) DarkExtraColors else LightExtraColors
+    val colorScheme = if (isDark) taskFlowDarkColorScheme() else taskFlowLightColorScheme()
+    val extraColors = if (isDark) taskFlowDarkExtraColors() else taskFlowLightExtraColors()
 
     CompositionLocalProvider(LocalExtraColors provides extraColors) {
         MaterialTheme(
             colorScheme = colorScheme,
-            typography = Typography,
+            typography = taskFlowTypography(),
             content = content
         )
     }

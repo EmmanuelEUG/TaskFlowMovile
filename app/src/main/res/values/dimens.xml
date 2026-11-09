@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing -->
+    <dimen name="spacing_xxs">2dp</dimen>
+    <dimen name="pill_padding_vertical">3dp</dimen>
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">6dp</dimen>
+    <dimen name="spacing_md">8dp</dimen>
+    <dimen name="spacing_base">10dp</dimen>
+    <dimen name="spacing_lg">12dp</dimen>
+    <dimen name="spacing_xl">14dp</dimen>
+    <dimen name="spacing_2xl">16dp</dimen>
+    <dimen name="spacing_3xl">18dp</dimen>
+    <dimen name="spacing_4xl">20dp</dimen>
+    <dimen name="spacing_5xl">24dp</dimen>
+    <dimen name="spacing_6xl">28dp</dimen>
+    <dimen name="bottom_list_padding">92dp</dimen>
+
+    <!-- Radii -->
+    <dimen name="radius_xs">6dp</dimen>
+    <dimen name="radius_day_cell">8dp</dimen>
+    <dimen name="radius_sm">10dp</dimen>
+    <dimen name="radius_md">12dp</dimen>
+    <dimen name="radius_lg">14dp</dimen>
+    <dimen name="radius_xl">16dp</dimen>
+    <dimen name="radius_fab">18dp</dimen>
+    <dimen name="radius_card_lg">20dp</dimen>
+    <dimen name="radius_2xl">24dp</dimen>
+    <dimen name="radius_dialog">28dp</dimen>
+    <dimen name="radius_pill">999dp</dimen>
+
+    <!-- Strokes & Elevations -->
+    <dimen name="stroke_thin">1dp</dimen>
+    <dimen name="stroke_dashed">2dp</dimen>
+    <dimen name="elevation_none">0dp</dimen>
+    <dimen name="elevation_nav">3dp</dimen>
+
+    <!-- Component sizes -->
+    <dimen name="btn_height_primary">52dp</dimen>
+    <dimen name="btn_height_secondary">48dp</dimen>
+    <dimen name="btn_height_dropdown">56dp</dimen>
+    <dimen name="chip_height">34dp</dimen>
+    <dimen name="recurrence_day_height">32dp</dimen>
+    <dimen name="week_day_chip_width">40dp</dimen>
+    <dimen name="month_day_chip_width">34dp</dimen>
+    <dimen name="icon_btn_compact">38dp</dimen>
+    <dimen name="avatar_size">46dp</dimen>
+    <dimen name="settings_icon_box">40dp</dimen>
+    <dimen name="detail_icon_box">36dp</dimen>
+    <dimen name="empty_icon_box">64dp</dimen>
+    <dimen name="error_icon_box">56dp</dimen>
+    <dimen name="logo_badge_lg">64dp</dimen>
+    <dimen name="logo_badge_md">48dp</dimen>
+    <dimen name="logo_badge_sm">32dp</dimen>
+    <dimen name="logo_icon_lg">34dp</dimen>
+    <dimen name="logo_icon_md">26dp</dimen>
+    <dimen name="logo_icon_sm">18dp</dimen>
+
+    <!-- Icon sizes -->
+    <dimen name="icon_xxs">12dp</dimen>
+    <dimen name="icon_xs">14dp</dimen>
+    <dimen name="icon_sm">16dp</dimen>
+    <dimen name="icon_md">18dp</dimen>
+    <dimen name="icon_base">20dp</dimen>
+    <dimen name="icon_lg">22dp</dimen>
+    <dimen name="icon_xl">24dp</dimen>
+    <dimen name="icon_2xl">28dp</dimen>
+    <dimen name="icon_3xl">32dp</dimen>
+
+    <!-- Charts -->
+    <dimen name="chart_bar_height">86dp</dimen>
+    <dimen name="chart_bar_width">24dp</dimen>
+    <dimen name="chart_donut_size">105dp</dimen>
+    <dimen name="chart_donut_stroke">16dp</dimen>
+    <dimen name="chart_legend_dot">10dp</dimen>
+
+    <!-- Typography -->
+    <dimen name="text_badge_label">10sp</dimen>
+    <dimen name="line_badge_label">14sp</dimen>
+    <dimen name="text_label_small">11sp</dimen>
+    <dimen name="line_label_small">14sp</dimen>
+    <dimen name="text_label_medium">12sp</dimen>
+    <dimen name="line_label_medium">16sp</dimen>
+    <dimen name="text_compact_button">12sp</dimen>
+    <dimen name="line_compact_button">16sp</dimen>
+    <dimen name="text_body_medium">13sp</dimen>
+    <dimen name="line_body_medium">18sp</dimen>
+    <dimen name="text_primary_cta_compact">14sp</dimen>
+    <dimen name="line_primary_cta_compact">20sp</dimen>
+    <dimen name="text_title_small">15sp</dimen>
+    <dimen name="line_title_small">20sp</dimen>
+    <dimen name="text_body_large">15sp</dimen>
+    <dimen name="line_body_large">22sp</dimen>
+    <dimen name="text_title_medium">16sp</dimen>
+    <dimen name="line_title_medium">22sp</dimen>
+    <dimen name="text_title_large">20sp</dimen>
+    <dimen name="line_title_large">26sp</dimen>
+    <dimen name="text_headline_medium">24sp</dimen>
+    <dimen name="line_headline_medium">30sp</dimen>
+    <dimen name="letter_spacing_headline_medium">-0.3sp</dimen>
+    <dimen name="text_headline_large">28sp</dimen>
+    <dimen name="line_headline_large">34sp</dimen>
+    <dimen name="letter_spacing_headline_large">-0.5sp</dimen>
+</resources>

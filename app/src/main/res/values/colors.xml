@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Light palette -->
+    <color name="tf_bg_light">#FFF8FAFC</color>
+    <color name="tf_surface_light">#FFFFFFFF</color>
+    <color name="tf_surface_alt_light">#FFF1F5F9</color>
+    <color name="tf_text_light">#FF0F172A</color>
+    <color name="tf_text_muted_light">#FF64748B</color>
+    <color name="tf_primary_light">#FF2563EB</color>
+    <color name="tf_on_primary_light">#FFFFFFFF</color>
+    <color name="tf_primary_container_light">#FFDBEAFE</color>
+    <color name="tf_on_primary_container_light">#FF1D4ED8</color>
+    <color name="tf_outline_light">#FFE2E8F0</color>
+    <color name="tf_error_light">#FFDC2626</color>
+    <color name="tf_on_error_light">#FFFFFFFF</color>
+    <color name="tf_error_container_light">#FFFEF2F2</color>
+    <color name="tf_success_light">#FF16A34A</color>
+
+    <color name="tf_alta_bg_light">#FFFEE2E2</color>
+    <color name="tf_alta_fg_light">#FFB91C1C</color>
+    <color name="tf_media_bg_light">#FFFEF3C7</color>
+    <color name="tf_media_fg_light">#FFB45309</color>
+    <color name="tf_baja_bg_light">#FFDBEAFE</color>
+    <color name="tf_baja_fg_light">#FF1D4ED8</color>
+
+    <!-- Dark palette -->
+    <color name="tf_bg_dark">#FF0F172A</color>
+    <color name="tf_surface_dark">#FF1E293B</color>
+    <color name="tf_surface_alt_dark">#FF334155</color>
+    <color name="tf_text_dark">#FFF1F5F9</color>
+    <color name="tf_text_muted_dark">#FF94A3B8</color>
+    <color name="tf_primary_dark">#FF60A5FA</color>
+    <color name="tf_on_primary_dark">#FF0B1220</color>
+    <color name="tf_primary_container_dark">#FF1E3A8A</color>
+    <color name="tf_on_primary_container_dark">#FFBFDBFE</color>
+    <color name="tf_outline_dark">#FF334155</color>
+    <color name="tf_error_dark">#FFF87171</color>
+    <color name="tf_on_error_dark">#FF0B1220</color>
+    <color name="tf_error_container_dark">#FF3B1B1F</color>
+    <color name="tf_success_dark">#FF4ADE80</color>
+
+    <color name="tf_alta_bg_dark">#FF5B2024</color>
+    <color name="tf_alta_fg_dark">#FFFCA5A5</color>
+    <color name="tf_media_bg_dark">#FF4A3410</color>
+    <color name="tf_media_fg_dark">#FFFCD34D</color>
+    <color name="tf_baja_bg_dark">#FF1E3A5F</color>
+    <color name="tf_baja_fg_dark">#FF93C5FD</color>
+
+    <!-- Chart accents -->
+    <color name="tf_chart_blue">#FF3B82F6</color>
+    <color name="tf_chart_green">#FF10B981</color>
+    <color name="tf_chart_red">#FFEF4444</color>
+    <color name="tf_chart_amber">#FFF59E0B</color>
+    <color name="tf_chart_purple">#FF8B5CF6</color>
 </resources>
